@@ -1,0 +1,1 @@
+# azure-aks-multi-region-ha
