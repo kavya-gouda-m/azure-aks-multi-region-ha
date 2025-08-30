@@ -1,0 +1,56 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terragrunt-cache/
+terraform.tfvars.json
+.plan
+*.plan
+
+# Kubernetes
+k8s/*.yaml
+k8s/*.yml
+*.kubeconfig
+*.log
+
+# CI/CD
+# Ignore output, build, and temp files from common CI/CD tools (GitHub Actions, Azure DevOps, etc.)
+dist/
+build/
+*.bak
+*.tmp
+*.swp
+.env
+.env.*
+.vscode/
+*.coverage
+*.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Docker
+docker-compose.override.yml
+docker-compose.dev.yml
+.docker/
+.dockerignore
+
+# Misc
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+node_modules/
+__pycache__/
+
+# OS generated files
+Thumbs.db
+.DS_Store
