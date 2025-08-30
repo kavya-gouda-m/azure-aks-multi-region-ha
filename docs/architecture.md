@@ -73,7 +73,25 @@ flowchart LR
 
 ---
 
-## 4. Blue-Green Deployment Strategy
+## 4. Failover Scenario Diagram
+
+When one region fails, Azure Front Door detects the outage and routes all traffic to the healthy region.
+
+```mermaid
+flowchart TD
+    User[User: myapp.com] --> DNS
+    DNS --> FrontDoor[Azure Front Door]
+    FrontDoor -- Region Down Detected --> AppGW2[App Gateway - West Europe]
+    AppGW2 --> AKS2[AKS - West Europe]
+    AKS2 -.-> ACR[Azure Container Registry]
+    %% AppGW1[App Gateway - East US] and AKS1[AKS - East US] are unavailable in this scenario
+    style AppGW1 fill:#f2f2f2,stroke:#ff0000,stroke-width:2px
+    style AKS1 fill:#f2f2f2,stroke:#ff0000,stroke-width:2px
+```
+
+---
+
+## 5. Blue-Green Deployment Strategy
 
 - Two backend pools in Front Door:
   - **app-blue:** Points to current version endpoints.
@@ -86,7 +104,7 @@ flowchart LR
 
 ---
 
-## 5. Security & Networking Highlights
+## 6. Security & Networking Highlights
 
 - **Front Door:** Provides global WAF and SSL offloading.
 - **App Gateway:** Custom WAF rule ensures only traffic from Front Door (using X-Azure-FDID header) is allowed.
@@ -95,7 +113,7 @@ flowchart LR
 
 ---
 
-## 6. Module Responsibilities
+## 7. Module Responsibilities
 
 | Module        | Purpose                                                         |
 |---------------|-----------------------------------------------------------------|
@@ -108,7 +126,7 @@ flowchart LR
 
 ---
 
-## 7. References
+## 8. References
 
 - [Azure Front Door Overview](https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview)
 - [AKS Documentation](https://learn.microsoft.com/en-us/azure/aks/)
